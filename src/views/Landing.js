@@ -1,18 +1,16 @@
-
-import './App.css';
 import React from "react";
-
+import { Link } from "react-router-dom";
 
 // components
 
-import Navbar from "./components/Navbars/IndexNavbar.js";
-import Footer from "./components/Footers/Footer.js";
+import Navbar from "components/Navbars/AuthNavbar.js";
+import Footer from "components/Footers/Footer.js";
 
-function App() {
+export default function Landing() {
   return (
     <>
-      <Navbar  />
-         <main>
+      <Navbar transparent />
+      <main>
         <div className="relative pt-16 pb-32 flex content-center items-center justify-center min-h-screen-75">
           <div
             className="absolute top-0 w-full h-full bg-center bg-cover"
@@ -131,7 +129,9 @@ function App() {
                   good to go. Just make sure you enable them first via
                   JavaScript.
                 </p>
-               
+                <Link to="/" className="font-bold text-blueGray-700 mt-8">
+                  Check Notus React!
+                </Link>
               </div>
 
               <div className="w-full md:w-4/12 px-4 mr-auto ml-auto">
@@ -276,7 +276,7 @@ function App() {
                 <div className="px-6">
                   <img
                     alt="..."
-                    src={require("./assets/img/team-1-800x800.jpg").default}
+                    src={require("assets/img/team-1-800x800.jpg").default}
                     className="shadow-lg rounded-full mx-auto max-w-120-px"
                   />
                   <div className="pt-6 text-center">
@@ -311,7 +311,7 @@ function App() {
                 <div className="px-6">
                   <img
                     alt="..."
-                    src={require("./assets/img/team-2-800x800.jpg").default}
+                    src={require("assets/img/team-2-800x800.jpg").default}
                     className="shadow-lg rounded-full mx-auto max-w-120-px"
                   />
                   <div className="pt-6 text-center">
@@ -340,7 +340,7 @@ function App() {
                 <div className="px-6">
                   <img
                     alt="..."
-                    src={require("./assets/img/team-3-800x800.jpg").default}
+                    src={require("assets/img/team-3-800x800.jpg").default}
                     className="shadow-lg rounded-full mx-auto max-w-120-px"
                   />
                   <div className="pt-6 text-center">
@@ -375,7 +375,7 @@ function App() {
                 <div className="px-6">
                   <img
                     alt="..."
-                    src={require("./assets/img/team-4-470x470.png").default}
+                    src={require("assets/img/team-4-470x470.png").default}
                     className="shadow-lg rounded-full mx-auto max-w-120-px"
                   />
                   <div className="pt-6 text-center">
@@ -564,5 +564,3 @@ function App() {
     </>
   );
 }
-
-export default App;
