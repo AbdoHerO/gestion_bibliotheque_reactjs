@@ -6,6 +6,7 @@ import "@fortawesome/fontawesome-free/css/all.min.css";
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import Admin from "./layouts/Admin.js";
+import User from "./layouts/User.js";
 import Auth from "./layouts/Auth.js";
 ReactDOM.render(
   <React.StrictMode>
@@ -13,6 +14,7 @@ ReactDOM.render(
     <Switch>
       {/* add routes with layouts */}
       <Route path="/admin" component={Admin} />
+      <Route path="/user" component={User} />
       <Route path="/auth" component={Auth} />
       {/* add routes without layouts */}
 

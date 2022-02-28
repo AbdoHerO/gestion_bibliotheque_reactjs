@@ -10,7 +10,7 @@ export default function Settings() {
     <>
       <div className="flex justify-center flex-wrap">
         <div className="w-full lg:w-8/12 px-4">
-          <CardSettings title="Admin Setting"/>
+          <CardSettings title="User Setting" />
         </div>
        
       </div>
