@@ -1,6 +1,6 @@
 import React from "react";
-import { Switch, Route, Redirect } from "react-router-dom";
-// import ProtectedRoute from '../components/guard/ProtectedRoute'
+import { Switch, Redirect } from "react-router-dom";
+import ProtectedRouteUser from '../components/guard/ProtectedRouteUser'
 // components
 
 import AdminNavbar from "../components/Navbars/AdminNavbar.js";
@@ -25,10 +25,10 @@ export default function Admin() {
         <HeaderStats />
         <div className="px-4 md:px-10 mx-auto w-full -m-24">
           <Switch>
-            <Route path="/user/dashboard" exact component={Dashboard} />
-            <Route path="/user/maps" exact component={Maps} />
-            <Route path="/user/settings" exact component={Settings} />
-            <Route path="/user/tables" exact component={Tables} />
+            <ProtectedRouteUser path="/user/dashboard" exact component={Dashboard} />
+            <ProtectedRouteUser path="/user/maps" exact component={Maps} />
+            <ProtectedRouteUser path="/user/settings" exact component={Settings} />
+            <ProtectedRouteUser path="/user/tables" exact component={Tables} />
             <Redirect from="/user" to="/user/dashboard" />
           </Switch>
           <FooterAdmin />
