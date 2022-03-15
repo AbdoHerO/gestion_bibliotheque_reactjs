@@ -10,13 +10,15 @@ export default function Register() {
    
 	const changeHandler = (event) => {
 		setSelectedFile(event.target.files[0]);
-	
+
+
 	};
 
   const handleSubmit = (event) => {
     // Prevent page reload
     event.preventDefault();
     
+
     const agree = document.getElementById("customCheckLogin");
     if(agree.checked){
 
@@ -32,13 +34,15 @@ export default function Register() {
         role : "user",
       });
       var formData = new FormData();
-      formData.append('file', selectedFile,selectedFile.name);
+      // formData.append('file', selectedFile,selectedFile.name);
+      formData.append('file', selectedFile);
       formData.append('userInfo', JSON.stringify(user));
      
       UserService.register(formData).then(async response => {
       
         const token = response.data;
-  
+        console.log( token);
+
         sessionStorage.setItem("auth-token", token);
         var user = jwt_decode(token);
   

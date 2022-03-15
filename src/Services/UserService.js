@@ -10,9 +10,7 @@ export const UserService = {
         });
     },
     register(formData) {
-        return axois.post(ApiUrl + 'register', {
-            formData : formData,
-        },{
+        return axois.post(ApiUrl + 'register',formData,{
             headers: {
                 'Content-Type': 'multipart/form-data'
             }
