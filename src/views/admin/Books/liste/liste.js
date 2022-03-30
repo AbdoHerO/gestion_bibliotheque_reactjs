@@ -1,9 +1,8 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { Table } from "react-bootstrap";
-import PropTypes from "prop-types";
 import Alert from "@material-tailwind/react/Alert";
-
+import { DataGrid, GridToolbar } from '@mui/x-data-grid';
+import Button from '@mui/material/Button';
 class Liste extends Component {
   constructor(props) {
     super(props);
@@ -58,6 +57,74 @@ class Liste extends Component {
       couleur = "alert alert-danger";
     }
 
+    const columns = [
+      {
+        field: 'image',
+        headerName: 'Avatar',
+        width: 240,
+        renderCell: (params) => <img className="h-12 w-12 bg-white rounded-full border" src={params.value} />,
+      },
+      {
+        field: 'id',
+        headerName: 'Id',
+        width: 240,
+        editable: true,
+      },
+      {
+        field: 'title',
+        headerName: 'Title',
+        width: 240,
+      },
+      {
+        field: 'description',
+        headerName: 'Description',
+        width: 240,
+      },
+      {
+        field: 'categorie',
+        headerName: 'Categorie',
+        width: 240,
+      },
+      {
+        field: 'Actions',
+        headerName: 'Actions',
+        width: 340,
+        renderCell: (params) => {
+          console.log(params);
+          return (
+            <div style={{margin : "5px"}}>
+              <Button
+                variant="contained"
+                style={{ outline: "none" ,margin : "5px" }}
+                color="error"
+                onClick={() => this.supprimer(params.id)}
+              >
+                Supprimer
+              </Button>
+              <Button
+               style={{ outline: "none" ,margin : "5px" }}
+                variant="contained"
+                href={"/admin/books/" + params.id}
+              >
+                Details
+              </Button>
+              <Button
+                
+                variant="contained"
+                color="warning"
+                href={"/admin/books/edit/" + params.id}
+              >
+                Edit
+              </Button>
+            </div>
+          );
+        }
+      },
+    ];
+
+    const initialRows = this.state.listeBook
+
+
     return (
       <>
         <div
@@ -80,7 +147,7 @@ class Liste extends Component {
                   </h3>
                   <a
                     className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
-                    href={"/admin/books/add" }
+                    href={"/admin/books/add"}
                   >
                     Add Book
                   </a>
@@ -90,14 +157,14 @@ class Liste extends Component {
                   {this.state.message.length > 0 && (
                     <Alert color="blueGray">{this.state.message}</Alert>
                   )}
-                      
+
 
                 </h5>
               </div>
             </div>
           </div>
-          <div className="block w-full overflow-x-auto">
-            {/* Projects table */}
+          {/* <div className="block w-full overflow-x-auto">
+          
             <table className="items-center w-full bg-transparent border-collapse">
               <thead>
                 <tr>
@@ -194,8 +261,20 @@ class Liste extends Component {
                 ))}
               </tbody>
             </table>
-          </div>
+          </div> */}
+           <div   style={{ height: 400, width: '100%' , backgroundColor : "white" , border : "none",boxShadow: "rgba(0, 0, 0, 0.1) 0px 4px 12px" }}>
+          <DataGrid
+            columns={columns}
+            rows={initialRows}
+            components={{
+              Toolbar: GridToolbar,
+            }}
+            
+          />
+      
         </div>
+        </div>
+       
       </>
     );
   }

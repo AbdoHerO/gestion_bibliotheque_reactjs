@@ -1,10 +1,11 @@
-import React, { Component } from "react";
+import React, { Component, } from "react";
 import axios from "axios";
 
 class Add extends Component {
-  
+
   constructor(props) {
     super(props);
+
 
     /*Créer le state du component*/
     this.state = {
@@ -20,9 +21,9 @@ class Add extends Component {
       message: "",
       statusResponse: "",
       selectedFile: null
-      
+
     };
-    
+
   }
   componentDidMount() {
     this.GetAllCategories();
@@ -35,9 +36,9 @@ class Add extends Component {
       });
   };
 
-  onFileChange = event => { 
+  onFileChange = event => {
     // Update the state 
-    this.setState({ selectedFile: event.target.files[0] }); 
+    this.setState({ selectedFile: event.target.files[0] });
   };
 
   changerEtat(event) {
@@ -49,12 +50,12 @@ class Add extends Component {
     });
   }
 
-  
-  
+
+
   handleCategorieChange = event => {
     this.setState({
       id_categorie: event.target.value,
-      book:{
+      book: {
         ...this.state.book,
         id_categorie: event.target.value,
       }
@@ -107,63 +108,119 @@ class Add extends Component {
     }
 
     return (
-      <div className="container">
-        <div className="row">
-          <fieldset className="border p-2">
-            {/*Afficher le message si on a reçu une reponse serveur*/}
-            {this.state.message.length > 0 && (
-              <div className={couleur} role="alert">
-                {this.state.message}
+
+      <>
+
+
+        <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-blueGray-100 border-0">
+          <div className="rounded-t bg-white mb-0 px-6 py-6">
+            <div className="text-center flex justify-between">
+              {/*Afficher le message si on a reçu une reponse serveur*/}
+              {this.state.message.length > 0 && (
+                <div className={couleur} role="alert">
+                  {this.state.message}
+                </div>
+              )}
+              <h6 className="text-blueGray-700 text-xl font-bold">Add Book</h6>
+
+            </div>
+          </div>
+          <div className="flex-auto px-4 lg:px-10 py-10 pt-0">
+            <form>
+              <h6 className="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
+                Book Information
+              </h6>
+              <div className="flex flex-wrap">
+                <div className="w-full lg:12 px-4">
+                  <div className="relative w-full mb-3">
+                    <label
+                      className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                      htmlFor="grid-password"
+                    >
+                      Title
+                    </label>
+                    <input
+                      type="text"
+                      placeholder="Enter le nom"
+                      name="title"
+                      value={this.state.book.title}
+                      onChange={(e) => this.changerEtat(e)}
+                      className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+
+                    />
+                  </div>
+                </div>
+                <div className="w-full lg:12 px-4">
+                  <div className="relative w-full mb-3">
+                    <label
+                      className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                      htmlFor="grid-password"
+                    >
+                      Descreption
+                    </label>
+                    <textarea
+                      rows="5"
+                      name="description"
+                      placeholder="description"
+                      value={this.state.book.description}
+                      onChange={(e) => this.changerEtat(e)}
+                      className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+
+                    />
+                  </div>
+                </div>
+                <div className="w-full lg:12 px-4">
+                  <div className="relative w-full mb-3">
+                    <label
+                      className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                      htmlFor="grid-password"
+                    >
+                      image
+                    </label>
+                    <input
+                      type="file"
+                      className="border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150"
+                      name="image"
+                      onChange={this.onFileChange}
+                    />
+                  </div>
+                </div>
+                <div className="w-full lg:12 px-4">
+                  <div className="relative w-full mb-3">
+                    <label
+                      className="block uppercase text-blueGray-600 text-xs font-bold mb-2"
+                      htmlFor="grid-password"
+                    >
+                      Categorie
+                    </label>
+                    <select className="w-full lg:12 px-4 border-0 px-3 py-3 placeholder-blueGray-300 text-blueGray-600 bg-white rounded text-sm shadow focus:outline-none focus:ring w-full ease-linear transition-all duration-150" onChange={this.handleCategorieChange}>
+                      <option value="⬇️ Select a categorie ⬇️"> -- Select a categorie -- </option>
+                      {this.state.listeCategories.map((categorie) => <option key={categorie.id} value={categorie.id}>{categorie.libelle}</option>)}
+                    </select>
+                  </div>
+                </div>
               </div>
-            )}
-
-            <legend className="w-auto">Add book</legend>
-            <div className="form-group mb-3">
-              <input
-                type="text"
-                className="form-control"
-                placeholder="Enter le nom"
-                name="title"
-                value={this.state.book.title}
-                onChange={(e) => this.changerEtat(e)}
-              />
-            </div>
-            <div className="form-group mb-3">
-              <textarea
-                className="form-control"
-                name="description"
-                placeholder="description"
-                value={this.state.book.description}
-                onChange={(e) => this.changerEtat(e)}
-              />
-            </div>
-            <div className="form-group mb-3">
-              <input
-                type="file"
-                className="form-control"
-                name="image"
-                onChange={this.onFileChange}
-              />
-            </div>
-
-            <div className="form-group mb-3">
-            <select className="form-control" onChange={this.handleCategorieChange}> 
-                <option value="⬇️ Select a categorie ⬇️"> -- Select a categorie -- </option>
-                {this.state.listeCategories.map((categorie) => <option key={categorie.id} value={categorie.id}>{categorie.libelle}</option>)}
-              </select>
-            </div>
-
-            <button
-              onClick={this.AddBook}
-              className="btn btn-secondary btn-block"
-            >
-              Add
-            </button>
-          </fieldset>
+              <div className="flex  flex-wrap">
+                <div className="w-full lg:w-12/12 px-4">
+                  <div className="relative flex mt-10 justify-center w-full mb-3">
+                    <button
+                      onClick={this.AddBook}
+                      className="bg-lightBlue-500 text-white active:bg-lightBlue-600 font-bold uppercase text-xs px-12 py-4 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+                      type="button"
+                    >
+                      Add Book
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
         </div>
-      </div>
+      </>
     );
   }
+
+
 }
 
 export default Add;

@@ -1,6 +1,6 @@
 import React from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
-// import ProtectedRoute from '../components/guard/ProtectedRoute'
+import AdminProtectedRoute from '../components/guard/ProtectedRouteAdmin'
 // components
 
 import AdminNavbar from "../components/Navbars/AdminNavbar.js";
@@ -30,14 +30,14 @@ export default function Admin() {
         <HeaderStats />
         <div className="px-4 md:px-10 mx-auto w-full -m-24">
           <Switch>
-            <Route path="/admin/books" exact component={Liste} />
-            <Route path="/admin/books/add" exact component={Add} />
-            <Route path="/admin/books/:id" exact component={Details} />
-            <Route path="/admin/books/edit/:id" exact component={Edit} />
-            <Route path="/admin/dashboard" exact component={Dashboard} />
-            <Route path="/admin/maps" exact component={Maps} />
-            <Route path="/admin/settings" exact component={Settings} />
-            <Route path="/admin/tables" exact component={Tables} />
+            <AdminProtectedRoute path="/admin/books" exact component={Liste} />
+            <AdminProtectedRoute path="/admin/books/add" exact component={Add} />
+            <AdminProtectedRoute path="/admin/books/:id" exact component={Details} />
+            <AdminProtectedRoute path="/admin/books/edit/:id" exact component={Edit} />
+            <AdminProtectedRoute path="/admin/dashboard" exact component={Dashboard} />
+            <AdminProtectedRoute path="/admin/maps" exact component={Maps} />
+            <AdminProtectedRoute path="/admin/settings" exact component={Settings} />
+            <AdminProtectedRoute path="/admin/tables" exact component={Tables} />
             <Redirect from="/admin" to="/admin/dashboard" />
           </Switch>
           <FooterAdmin />

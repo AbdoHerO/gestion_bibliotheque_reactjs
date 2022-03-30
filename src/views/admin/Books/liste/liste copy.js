@@ -3,6 +3,7 @@ import axios from "axios";
 import { Table } from "react-bootstrap";
 
 class Liste extends Component {
+
   constructor(props) {
     super(props);
     /*Créer une state avec un tableau vide qui sera remplir par le backend*/
@@ -46,7 +47,8 @@ class Liste extends Component {
         this.setState({ listeBook: response.data });
       });
   };
-
+  
+   
   render() {
     /*Selo le type du message reçu on afficher une notification*/
     let couleur = "";
@@ -103,6 +105,7 @@ class Liste extends Component {
             ))}
           </tbody>
         </Table>
+         
       </div>
     );
   }

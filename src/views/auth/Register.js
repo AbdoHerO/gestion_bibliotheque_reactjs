@@ -20,7 +20,7 @@ export default function Register() {
     
 
     const agree = document.getElementById("customCheckLogin");
-    if(agree.checked){
+   // if(agree.checked){
 
       const full_name = event.target.full_name.value;
       const email = event.target.email.value;
@@ -60,9 +60,9 @@ export default function Register() {
       }).catch(error => {
         console.log(error);
       })
-    }else{
+   // }else{
       console.log("You must agree to the terms and conditions");
-    }
+   // }
   
   };
   return (
